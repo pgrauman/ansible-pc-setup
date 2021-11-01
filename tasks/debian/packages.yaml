@@ -1,0 +1,25 @@
+---
+- name: Include APT package list
+  include_vars: vars/apt.yaml
+  tags:
+    - apt
+    - debian
+
+- name: Update/Upgrade apt
+  become: true
+  apt:
+    update_cache: true
+    upgrade: dist
+  tags:
+    - apt
+    - debian
+
+- name: Manage apt packages
+  become: true
+  apt:
+    name: "{{ item.key }}"
+    state: "{{ item.value.state | default('latest') }}"
+  with_dict: "{{apt}}"
+  tags:
+    - apt
+    - debian

@@ -1,0 +1,20 @@
+apt:
+  bash:
+  # cowsay:
+  curl:
+  git:
+  golang:
+  build-essentials:
+  grc:
+  grep:
+  htop:
+  ncdu:
+  python3-pip:
+  python3-setuptools:
+  python3:
+  speedtest-cli:
+  tmux:
+  vagrant:
+  vim:
+  wget:
+  zsh:

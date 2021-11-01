@@ -1,0 +1,10 @@
+---
+- name: Copy .zshrc
+  copy:
+    src: "{{ playbook_dir }}/dotfiles/zshrc"
+    dest: "{{ ansible_env.HOME }}/.zshrc"
+
+- name: Copy .p10k.zsh
+  copy:
+    src: "{{ playbook_dir }}/dotfiles/p10k.zsh"
+    dest: "{{ ansible_env.HOME }}/.p10k.zsh"

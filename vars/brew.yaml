@@ -1,0 +1,17 @@
+formula:
+  - ansible:
+  - emacs:
+  - wget:
+  - flake8:
+  - fortune:
+  - yamllint:
+  - kubernetes-cli:
+  - git:
+  - minikube:
+  - tmux:
+  - cask:
+  - poetry:
+  - go-task:
+  - pv:
+  - watch:
+  - rename:

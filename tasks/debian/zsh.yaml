@@ -1,0 +1,53 @@
+---
+- name: Check if oh-my-zsh is already installed
+  stat: path="{{ ansible_env.HOME }}/.oh-my-zsh"
+  register: ohmyzsh_installed
+  tags: ['ohmyzsh']
+
+- name: Check if p10k is already installed
+  stat: path="{{ ansible_env.HOME }}/.oh-my-zsh/themes/powerlevel10k"
+  register: p10k_installed
+  tags: ['ohmyzsh']
+
+- name: Get zsh executable path
+  command: "which zsh"
+  register: zsh_bin
+
+- name: Clone oh-my-zsh
+  git:
+    repo: "https://github.com/ohmyzsh/ohmyzsh.git"
+    dest: "{{ ansible_env.HOME }}/ohmyzsh"
+    accept_hostkey: yes
+    update: no
+    force: no
+  when: not ohmyzsh_installed.stat.exists
+
+- name: Install oh-my-zsh
+  shell: |
+    export ZSH="{{ ansible_env.HOME }}/.oh-my-zsh" && \
+    sh -c './install.sh --unattended'
+  args:
+    chdir: "{{ ansible_env.HOME }}/ohmyzsh/tools/"
+  when: not ohmyzsh_installed.stat.exists
+  tags: ['ohmyzsh']
+
+- name: Clean up oh-my-zsh repo
+  file:
+    state: absent
+    path: "{{ ansible_env.HOME }}/ohmyzsh"
+  when: not ohmyzsh_installed.stat.exists
+
+- name: Set zsh as default shell
+  become: yes
+  user:
+    name: "{{ login_user }}"
+    shell: "{{ zsh_bin.stdout }}"
+
+- name: Get P10k
+  git:
+    repo: "https://github.com/romkatv/powerlevel10k.git"
+    depth: 1
+    dest: "{{ ansible_env.HOME }}/.oh-my-zsh/themes/powerlevel10k"
+    accept_hostkey: yes
+    update: no
+  when: not p10k_installed.stat.exists

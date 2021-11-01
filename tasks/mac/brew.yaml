@@ -1,0 +1,54 @@
+---
+- name: Include Brew package list
+  include_vars: vars/brew.yaml
+  tags:
+    - mac
+    - brew_formula
+
+# - name: Update/Upgrade Homebrew
+#   homebrew:
+#     update_homebrew: true
+#     upgrade_all: true
+#   tags:
+#     - mac
+#     - brew_taps
+#     - brew_formula
+#     - brew_cask
+
+# - name: Manage taps
+#   homebrew_tap:
+#     name: "{{ item.key }}"
+#     state: "{{ item.value.state | default('present') }}"
+#   with_dict: "{{taps}}"
+#   tags:
+#     - mac
+#     - brew_taps
+
+- name: Manage formula
+  homebrew:
+    name: "{{ item.key }}"
+    install_options: "{{ item.value.options | default(omit) }}"
+    state: "{{ item.value.state | default('present') }}"
+  with_dict: "{{ formula }}"
+  tags:
+    - mac
+    - brew_formula
+
+# - name: Manage casks
+#   homebrew_cask:
+#     name: "{{ item.key }}"
+#     state: "{{ item.value.state | default('present') }}"
+#   with_dict: "{{casks}}"
+#   tags:
+#     - mac
+#     - brew_cask
+
+# - name: Manage python packages
+#   pip:
+#     name: "{{ item.key }}"
+#     state: "{{ item.value.state | default('latest') }}"
+#     executable: "{{ item.value.executable | default('pip3') }}"
+#   with_dict: "{{pip}}"
+#   tags:
+#     - mac
+#     - pip
