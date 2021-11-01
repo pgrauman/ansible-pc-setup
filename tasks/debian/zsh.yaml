@@ -2,16 +2,20 @@
 - name: Check if oh-my-zsh is already installed
   stat: path="{{ ansible_env.HOME }}/.oh-my-zsh"
   register: ohmyzsh_installed
-  tags: ['ohmyzsh']
+  tags:
+  - zsh
 
 - name: Check if p10k is already installed
   stat: path="{{ ansible_env.HOME }}/.oh-my-zsh/themes/powerlevel10k"
   register: p10k_installed
-  tags: ['ohmyzsh']
+  tags:
+  - zsh
 
 - name: Get zsh executable path
   command: "which zsh"
   register: zsh_bin
+  tags:
+  - zsh
 
 - name: Clone oh-my-zsh
   git:
@@ -21,6 +25,8 @@
     update: no
     force: no
   when: not ohmyzsh_installed.stat.exists
+  tags:
+  - zsh
 
 - name: Install oh-my-zsh
   shell: |
@@ -29,19 +35,24 @@
   args:
     chdir: "{{ ansible_env.HOME }}/ohmyzsh/tools/"
   when: not ohmyzsh_installed.stat.exists
-  tags: ['ohmyzsh']
+  tags:
+  - zsh
 
 - name: Clean up oh-my-zsh repo
   file:
     state: absent
     path: "{{ ansible_env.HOME }}/ohmyzsh"
   when: not ohmyzsh_installed.stat.exists
+  tags:
+  - zsh
 
 - name: Set zsh as default shell
   become: yes
   user:
     name: "{{ login_user }}"
     shell: "{{ zsh_bin.stdout }}"
+  tags:
+  - zsh
 
 - name: Get P10k
   git:
@@ -51,3 +62,34 @@
     accept_hostkey: yes
     update: no
   when: not p10k_installed.stat.exists
+  tags:
+  - zsh
+
+- name: Creates user fonts directory
+  file:
+    path: "~/.local/share/fonts/"
+    state: directory
+  tags:
+  - zsh
+
+- name: Download nerd fonts
+  get_url:
+    url: "{{ item.value.url }}"
+    dest: "~/.local/share/fonts/{{ item.key }}"
+    # checksum: "{{ item.value }}
+  tags:
+  - zsh
+  - test
+  with_dict:
+    MesloLGS NF Regular.ttf:
+      url: https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf
+      checksum: 9192e07bc2e8aa973931b86f2ac6946d727319b07f1fdf1a90756b0da9accdcb
+    MesloLGS NF Bold.ttf:
+      url: https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf
+      checksum: ebdc86f4dbac57ec81e3b7b6f2e6fa182b4ac74e928f2035d398000404f42b71
+    MesloLGS NF Italic.ttf:
+      url: https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf
+      checksum: ffbb03ec5ae9be0bed5609c423f1846c59d94641c4f6a2ddf94e24f8c7958290
+    MesloLGS NF Bold Italic.ttf:
+      url: https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf
+      checksum: 7fed7e876c1a911ebdd83cb861d4d26fc81376da2018ac8d704a99897c35b83c

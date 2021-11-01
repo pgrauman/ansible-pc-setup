@@ -4,7 +4,7 @@ apt:
   curl:
   git:
   golang:
-  build-essentials:
+  # build-essentials:
   grc:
   grep:
   htop:
