@@ -24,3 +24,34 @@
   tags:
     - apt
     - debian
+
+- name: Check AWS CLI is installed
+  stat:
+    path: /usr/local/aws-cli/
+  register: aws_cli_installed
+  tags:
+    - aws_cli
+
+- name: Install AWS CLI
+  block:
+    - name: Unzip AWS CLI
+      unarchive:
+        src: https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
+        dest: ~/
+        remote_src: yes
+
+    - name: Install AWS CLI
+      shell:
+        cmd: "sudo ./install"
+        # become: true
+        chdir: ~/aws
+        creates: /usr/local/aws-cli/
+
+    - name: Cleanup AWS install
+      file:
+        path: ~/aws
+        state: absent
+
+  when: not aws_cli_installed.stat.exists
+  tags:
+    - aws_cli
