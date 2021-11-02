@@ -1,8 +1,8 @@
 [user]
 	name = pgrauman
 	email = "none"
-[url "https://"]
-	insteadOf = "git://"
+# [url "https://"]
+# 	insteadOf = "git://"
 [color]
 	diff = auto
 	status = auto
