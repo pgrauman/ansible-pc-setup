@@ -1,9 +1,9 @@
 ---
-- name: Include Brew package list
-  include_vars: vars/brew.yaml
-  tags:
-    - mac
-    - brew_formula
+# - name: Include Brew package list
+#   include_vars: vars/brew.yaml
+#   tags:
+#     - mac
+#     - brew_formula
 
 # - name: Update/Upgrade Homebrew
 #   homebrew:

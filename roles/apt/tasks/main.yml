@@ -1,10 +1,10 @@
 ---
-- name: Include APT package list
-  include_vars: vars/apt.yaml
-  become: true
-  tags:
-    - apt
-    - debian
+# - name: Include APT package list
+#   include_vars: vars/apt.yaml
+#   become: true
+#   tags:
+#     - apt
+#     - debian
 
 # - name: Include snap package list
 #   include_vars: vars/snap.yaml
