@@ -6,6 +6,13 @@
     - apt
     - debian
 
+# - name: Include snap package list
+#   include_vars: vars/snap.yaml
+#   become: true
+#   tags:
+#     - snap
+#     - debian
+
 - name: Update/Upgrade apt
   become: true
   apt:
@@ -24,6 +31,17 @@
   tags:
     - apt
     - debian
+
+# - name: Manage snap packages
+#   become: true
+#   community.general.snap:
+#     name: "{{ item.key }}"
+#     state: "{{ item.value.state | default('present') }}"
+#     classic: true
+#   with_dict: "{{snap}}"
+#   tags:
+#     - snap
+#     - debian
 
 - name: Check AWS CLI is installed
   stat:
