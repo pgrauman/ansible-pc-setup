@@ -5,13 +5,22 @@
   hosts: all
   vars:
     login_user: "{{ ansible_user_id }}"
+
   tasks:
-    - import_tasks: tasks/debian/packages.yaml
+    - name: "Apt installations"
+      include_role:
+        name: apt
       when: ansible_facts['os_family'] == 'Debian'
 
-    - import_tasks: tasks/mac/brew.yaml
-      when: ansible_facts['os_family'] == 'Darwin'
+    - name: "Brew installations"
+      include_role:
+        name: brew
+      when: ansible_facts['os_family'] == 'Mac'
 
-    - import_tasks: tasks/debian/zsh.yaml
+    - name: "ZSH setup"
+      include_role:
+        name: zsh
 
-    - import_tasks: tasks/dotfiles.yaml
+    - name: "Dotfile setup"
+      include_role:
+        name: zsh
