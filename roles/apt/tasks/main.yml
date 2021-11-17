@@ -73,3 +73,11 @@
   when: not aws_cli_installed.stat.exists
   tags:
     - aws_cli
+  
+- name: Install Go Task
+  become: true
+  shell:
+    cmd: 'sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin'
+    creates: /usr/local/bin/task
+  tags:
+    - gotask

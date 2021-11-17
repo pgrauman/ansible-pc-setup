@@ -1,0 +1,10 @@
+---
+- name: Manage yum packages
+  become: true
+  yum:
+    name: "{{ item.key }}"
+    state: "{{ item.value.state | default('latest') }}"
+  with_dict: "{{yum}}"
+  tags:
+    - yum
+    - centos

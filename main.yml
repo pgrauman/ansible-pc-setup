@@ -17,10 +17,16 @@
         name: brew
       when: ansible_facts['os_family'] == 'Mac'
 
+    - name: "Yum installation"
+      include_role:
+        name: yum
+      when: ansible_facts['os_family'] == 'RedHat'
+
     - name: "ZSH setup"
       include_role:
         name: zsh
 
     - name: "Dotfile setup"
       include_role:
-        name: zsh
+        name: dotfiles
+
