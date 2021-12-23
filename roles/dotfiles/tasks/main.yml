@@ -1,21 +1,21 @@
 ---
 - name: Copy .zshrc
   copy:
-    src: "{{ playbook_dir }}/dotfiles/zshrc"
+    src: "zshrc"
     dest: "{{ ansible_env.HOME }}/.zshrc"
   tags:
     - dotfiles
 
 - name: Copy .p10k.zsh
   copy:
-    src: "{{ playbook_dir }}/dotfiles/p10k.zsh"
+    src: "p10k.zsh"
     dest: "{{ ansible_env.HOME }}/.p10k.zsh"
   tags:
     - dotfiles
 
 - name: Copy gitconfig
   copy:
-    src: "{{ playbook_dir }}/dotfiles/gitconfig"
+    src: "gitconfig"
     dest: "{{ ansible_env.HOME }}/.gitconfig"
   tags:
     - dotfiles
