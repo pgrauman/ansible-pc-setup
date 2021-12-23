@@ -6,27 +6,17 @@
   vars:
     login_user: "{{ ansible_user_id }}"
 
-  tasks:
-    - name: "Apt installations"
-      include_role:
-        name: apt
+  roles:
+    - role: apt
       when: ansible_facts['os_family'] == 'Debian'
 
-    - name: "Brew installations"
-      include_role:
-        name: brew
+    - role: brew
       when: ansible_facts['os_family'] == 'Mac'
 
-    - name: "Yum installation"
-      include_role:
-        name: yum
+    - role: yum
       when: ansible_facts['os_family'] == 'RedHat'
 
-    - name: "ZSH setup"
-      include_role:
-        name: zsh
+    - role: zsh
 
-    - name: "Dotfile setup"
-      include_role:
-        name: dotfiles
+    - role: dotfiles
 

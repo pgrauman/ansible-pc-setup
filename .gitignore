@@ -1,2 +1,4 @@
 .vagrant/
 cradle-aws-inventory.yml
+.vault_pass
+ansible_collections
