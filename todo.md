@@ -2,7 +2,7 @@
 ~ - [ ] dotfiles in their own repo ~
 - [x] hosts (local host by default)
 - [x] tags: debian, mac, remote, apps
-- [ ] .gitignore, linting etc
+- [x] .gitignore, linting etc
 - [ ] check dependencies
 - [x] Setup local for Debian
   - [x] [font installation](https://github.com/romkatv/powerlevel10k#automatic-font-installation)

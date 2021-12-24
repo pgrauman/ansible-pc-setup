@@ -11,12 +11,6 @@
   tags:
   - zsh
 
-- name: Get zsh executable path
-  command: "which zsh"
-  register: zsh_bin
-  tags:
-  - zsh
-
 - name: Clone oh-my-zsh
   git:
     repo: "https://github.com/ohmyzsh/ohmyzsh.git"
@@ -24,6 +18,7 @@
     accept_hostkey: yes
     update: no
     force: no
+    version: 4f90849
   when: not ohmyzsh_installed.stat.exists
   tags:
   - zsh
@@ -50,7 +45,7 @@
   become: yes
   user:
     name: "{{ login_user }}"
-    shell: "{{ zsh_bin.stdout }}"
+    shell: /bin/zsh
   tags:
   - zsh
 
@@ -61,6 +56,7 @@
     dest: "{{ ansible_env.HOME }}/.oh-my-zsh/themes/powerlevel10k"
     accept_hostkey: yes
     update: no
+    version: c9bc2f5
   when: not p10k_installed.stat.exists
   tags:
   - zsh
@@ -69,6 +65,7 @@
   file:
     path: "~/.local/share/fonts/"
     state: directory
+    mode: "0644"
   tags:
   - zsh
 

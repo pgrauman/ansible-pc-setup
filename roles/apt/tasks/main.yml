@@ -27,7 +27,7 @@
   apt:
     name: "{{ item.key }}"
     state: "{{ item.value.state | default('latest') }}"
-  with_dict: "{{apt}}"
+  with_dict: "{{ apt }}"
   tags:
     - apt
     - debian

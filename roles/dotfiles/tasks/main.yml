@@ -3,6 +3,7 @@
   copy:
     src: "zshrc"
     dest: "{{ ansible_env.HOME }}/.zshrc"
+    mode: "0644"
   tags:
     - dotfiles
 
@@ -10,6 +11,7 @@
   copy:
     src: "p10k.zsh"
     dest: "{{ ansible_env.HOME }}/.p10k.zsh"
+    mode: "0644"
   tags:
     - dotfiles
 
@@ -17,6 +19,7 @@
   copy:
     src: "gitconfig"
     dest: "{{ ansible_env.HOME }}/.gitconfig"
+    mode: "0644"
   tags:
     - dotfiles
 
@@ -24,6 +27,7 @@
   copy:
     src: "{{ item }}"
     dest: "{{ ansible_env.HOME }}/.oh-my-zsh/custom"
+    mode: "0644"
   with_items:
     - aliases.zsh
     - functions.zsh
