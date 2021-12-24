@@ -3,6 +3,18 @@ The purpose of this repo is to manage the provisioning of a new computer with my
 
 The intention is to be able to setup either a linux or mac workstation. With the ability to distintuish between a local and a remote machine; the latter not needing any GUI applications and shell customizations
 
+# Dependencies
+* python3
+* ansible
+* ssh access to remote
+
+# Usage
+``` bash
+# edit inventory if there are more/different hosts then just local
+
+ansible-playbook -i inventory  main.yml --ask-become-pass
+``` 
+
 # References
 There is a lot of good (better) resources out there by other on Ansible Galaxy and github for many of these tasks. Here I have reimplemented many of these more extensible packages as a medium to lean Ansible syntax.
 
