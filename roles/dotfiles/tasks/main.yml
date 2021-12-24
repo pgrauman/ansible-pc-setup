@@ -19,3 +19,13 @@
     dest: "{{ ansible_env.HOME }}/.gitconfig"
   tags:
     - dotfiles
+
+- name: Move custom zsh into place
+  copy:
+    src: "{{ item }}"
+    dest: "{{ ansible_env.HOME }}/.oh-my-zsh/custom"
+  with_items:
+    - aliases.zsh
+    - functions.zsh
+  tags:
+    - dotfiles
