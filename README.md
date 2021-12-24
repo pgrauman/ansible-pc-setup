@@ -7,6 +7,7 @@ The intention is to be able to setup either a linux or mac workstation. With the
 * python3
 * ansible
 * ssh access to remote
+* (optional) vagrant for testing
 
 # Usage
 ``` bash
