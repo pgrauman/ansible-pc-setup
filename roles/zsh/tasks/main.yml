@@ -65,7 +65,7 @@
   file:
     path: "~/.local/share/fonts/"
     state: directory
-    mode: "0644"
+    mode: "0774"
   tags:
   - zsh
 
@@ -73,7 +73,7 @@
   get_url:
     url: "{{ item.value.url }}"
     dest: "~/.local/share/fonts/{{ item.key }}"
-    # checksum: "{{ item.value }}
+    mode: "0664"
   tags:
   - zsh
   - test

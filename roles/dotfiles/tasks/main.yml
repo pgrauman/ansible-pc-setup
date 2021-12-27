@@ -31,5 +31,6 @@
   with_items:
     - aliases.zsh
     - functions.zsh
+    - pathappend.zsh
   tags:
     - dotfiles

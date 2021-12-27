@@ -7,3 +7,5 @@ fi
 # History search
 alias hs='history | grep'
 
+
+alias python="python3"
