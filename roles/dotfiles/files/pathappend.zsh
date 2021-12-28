@@ -5,6 +5,6 @@ fi
 
 
 # Export paths if they exist
-if [ -f "~/.vault_pass" ]]; then
-    export ANSIBLE_VAULT_PASSWORD_FILE="~/.vault_pass"
+if [ -f "$HOME/.vault_pass" ]; then
+    export ANSIBLE_VAULT_PASSWORD_FILE="$HOME/.vault_pass"
 fi
