@@ -1,17 +1,30 @@
 formula:
   - ansible:
-  - emacs:
   - wget:
   - flake8:
   - fortune:
   - yamllint:
-  - kubernetes-cli:
   - git:
   - minikube:
   - tmux:
   - cask:
   - poetry:
-  - go-task:
+  - go-task/tap/go-task:
   - pv:
   - watch:
   - rename:
+
+  # k8s cluster tools
+  - kubernetes-cli:
+  - direnv:
+  - flux:
+  - age:
+  - ipcalc:
+  - jq:
+  - sops:
+  - terraform:
+
+# taps:
+
+
+# casks:
