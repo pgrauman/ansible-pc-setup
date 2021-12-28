@@ -23,6 +23,10 @@ formula:
   - jq:
   - sops:
   - terraform:
+  - kustomize:
+  - helm:
+  - pre-commit:
+  - prettier:
 
 # taps:
 
