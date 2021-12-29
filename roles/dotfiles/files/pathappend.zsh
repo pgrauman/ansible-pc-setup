@@ -8,3 +8,7 @@ fi
 if [ -f "$HOME/.vault_pass" ]; then
     export ANSIBLE_VAULT_PASSWORD_FILE="$HOME/.vault_pass"
 fi
+
+if [ -f "$HOME/.config/sops/age/keys.txt" ]; then
+    export SOPS_AGE_KEY_FILE=$HOME/.config/sops/age/keys.txt
+fi
