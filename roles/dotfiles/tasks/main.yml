@@ -8,7 +8,6 @@
     - zshrc
     - p10k.zsh
     - gitconfig
-    - ansible.cfg
   tags:
     - dotfiles
 
