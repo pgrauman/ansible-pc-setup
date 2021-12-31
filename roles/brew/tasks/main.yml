@@ -34,3 +34,14 @@
   tags:
     - brew
 
+
+
+# Not brew but don't have iterm automated yet
+- name: Get iterm2 colors
+  get_url:
+    url: "https://raw.githubusercontent.com/mbadolato/iTerm2-Color-Schemes/master/schemes/Espresso.itermcolors"
+    dest: "{{ ansible_env.HOME }}/Espresso.itermcolors"
+    mode: "0664"
+    checksum: "sha256:ee0defb5aeaf192233c56605f8cc2a2d91de2b0d5a07ea1212ce92e7d546f590"
+  tags:
+    - brew

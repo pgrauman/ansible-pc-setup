@@ -8,6 +8,7 @@
     - zshrc
     - p10k.zsh
     - gitconfig
+    - tmux.conf
   tags:
     - dotfiles
 
@@ -23,3 +24,26 @@
     - pathappend.zsh
   tags:
     - dotfiles
+
+
+- name: Create .tmux plugins directrory
+  file:
+    path: "{{ ansible_env.HOME }}/.tmux/plugins"
+    state: directory
+    mode: "0774"
+  tags:
+  - dotfiles
+
+
+- name: Clone TPM
+  git:
+    repo: "https://github.com/tmux-plugins/tpm"
+    dest: "{{ ansible_env.HOME }}/.tmux/plugins/tpm"
+    accept_hostkey: yes
+    update: no
+    force: no
+    version: 693e5a2
+  tags:
+  - dotfiles
+
+

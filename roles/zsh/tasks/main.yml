@@ -74,9 +74,9 @@
     url: "{{ item.value.url }}"
     dest: "~/.local/share/fonts/{{ item.key }}"
     mode: "0664"
+    checksum: "sha256:{{ item.value.checksum }}"
   tags:
   - zsh
-  - test
   with_dict:
     MesloLGS NF Regular.ttf:
       url: https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf

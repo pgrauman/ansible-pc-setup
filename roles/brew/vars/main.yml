@@ -17,7 +17,7 @@ formula:
   # k8s cluster tools
   - kubernetes-cli:
   - direnv:
-  - flux:
+  - fluxcd/tap/flux:
   - age:
   - ipcalc:
   - jq:
@@ -27,6 +27,7 @@ formula:
   - helm:
   - pre-commit:
   - prettier:
+  - k9s:
 
 # taps:
 
