@@ -59,9 +59,8 @@
         remote_src: yes
 
     - name: Install AWS CLI
-      shell:
-        cmd: "sudo ./install"
-        # become: true
+      command: "sudo ./install"
+      args:
         chdir: ~/aws
         creates: /usr/local/aws-cli/
 
@@ -76,8 +75,8 @@
   
 - name: Install Go Task
   become: true
-  shell:
-    cmd: 'sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin'
+  command: 'sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin'
+  args:
     creates: /usr/local/bin/task
   tags:
     - gotask
