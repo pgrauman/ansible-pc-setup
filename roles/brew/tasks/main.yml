@@ -35,7 +35,6 @@
     - brew
 
 
-
 # Not brew but don't have iterm automated yet
 - name: Get iterm2 colors
   get_url:
